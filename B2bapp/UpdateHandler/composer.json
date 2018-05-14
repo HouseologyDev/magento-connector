@@ -3,7 +3,8 @@
   "description": "Update Handler module for Magento 2",
   "type": "magento2-module",
   "config": {
-    "secure-http": false
+    "secure-http": false,
+    "disable-tls": true
   },
   "extra": {
     "map": [
