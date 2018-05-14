@@ -1,13 +1,13 @@
-//{
-//  "name": "B2bapp/UpdateHandler",
-//  "description": "Update Handler module for Magento 2",
-//  "type": "magento2-module",
-//  "extra": {
-//    "map": [
-//      [
-//        "*",
-//        "B2BApp/UpdateHandler"
-//      ]
-//    ]
-//  }
-//}
+{
+  "name": "B2bapp/UpdateHandler",
+  "description": "Update Handler module for Magento 2",
+  "type": "magento2-module",
+  "extra": {
+    "map": [
+      [
+        "*",
+        "B2bapp/UpdateHandler"
+      ]
+    ]
+  }
+}
