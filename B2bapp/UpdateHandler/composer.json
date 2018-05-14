@@ -16,10 +16,6 @@
       "Magento\\SampleNewPage\\": ""
     }
   },
-  "config": {
-    "secure-http": false,
-    "disable-tls": true
-  },
   "extra": {
     "map": [
       [
