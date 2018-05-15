@@ -8,7 +8,7 @@
   ],
   "require": {
     "php": "~5.5.0|~5.6.0|~7.0.0|~7.1.0",
-    "magento/framework": "~100.0.4"
+    "magento/framework": "~100.0.20"
   },
   "autoload": {
     "files": [ "registration.php" ],
@@ -16,16 +16,6 @@
       "Magento\\SampleNewPage\\": ""
     }
   },
-  "repositories": [
-    { "type": "vcs",
-      "url": "https://git.houseology.com/shree/Intrepid.git",
-      "options": {
-        "ssl": {
-          "local_cert": ""
-        }
-      }
-    }
-  ],
   "extra": {
     "map": [
       [
