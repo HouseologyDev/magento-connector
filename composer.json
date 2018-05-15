@@ -15,18 +15,6 @@
       "Magento\\SampleNewPage\\": ""
     }
   },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://git.houseology.com/shree/Intrepid.git",
-      "options": {
-        "ssl": {
-          "verify_peer": false,
-          "allow_self_signed": true
-        }
-      }
-    }
-  ],
   "extra": {
     "map": [
       [
