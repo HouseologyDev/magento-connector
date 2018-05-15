@@ -21,7 +21,8 @@
       "url": "https://git.houseology.com/shree/Intrepid.git",
       "options": {
         "ssl": {
-          "verify_peer": false
+          "verify_peer": false,
+          "allow_self_signed": true
         }
       }
     }
