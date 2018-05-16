@@ -20,14 +20,6 @@
       "B2bapp\\UpdateHandler\\Model\\ResourceModel\\UpdatedEntities": "Model/ResourceModel/UpdatedEntities.php"
     }
   },
-  "extra": {
-    "map": [
-      [
-        "*",
-        "B2bapp/UpdateHandler"
-      ]
-    ]
-  },
   "minimum-stability": "dev",
   "prefer-stable": true
 }
