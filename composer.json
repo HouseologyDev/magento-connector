@@ -11,7 +11,13 @@
   "autoload": {
     "files": [ "registration.php" ],
     "psr-4": {
-      "Magento\\SampleNewPage\\": ""
+      "B2bapp\\UpdateHandler\\": ""
+    },
+    "psr-0": {
+      "B2bapp\\UpdateHandler\\Model\\UpdatedEntitiesInterface" : "Model/UpdatedEntitiesInterface.php",
+      "B2bapp\\UpdateHandler\\Model\\UpdatedEntities" : "Model/UpdatedEntities.php",
+      "B2bapp\\UpdateHandler\\Api\\UpdateHandlerInterface" : "Api/UpdateHandlerInterface.php",
+      "B2bapp\\UpdateHandler\\Model\\ResourceModel\\UpdatedEntities": "Model/ResourceModel/UpdatedEntities.php"
     }
   },
   "extra": {

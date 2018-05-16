@@ -3,7 +3,7 @@
 namespace B2bapp\UpdateHandler\Model;
 
 use B2bapp\UpdateHandler\Api\UpdateHandlerInterface;
-use Magento\Framework\EntityManager\EntityManager;
+use \Magento\Framework\EntityManager\EntityManager;
 
 class UpdateHandler implements UpdateHandlerInterface
 {
@@ -17,7 +17,7 @@ class UpdateHandler implements UpdateHandlerInterface
     public function get()
     {
         $model = \Magento\Framework\App\ObjectManager::getInstance()
-            ->get('Magento\Framework\App\ResourceConnection');
+            ->get('\Magento\Framework\App\ResourceConnection');
 
         $connection = $model->getConnection();
 
