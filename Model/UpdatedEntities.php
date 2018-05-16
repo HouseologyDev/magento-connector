@@ -2,7 +2,6 @@
 
 namespace B2bapp\UpdateHandler\Model;
 
-
 class UpdatedEntities extends \Magento\Framework\Model\AbstractModel implements UpdatedEntitiesInterface, \Magento\Framework\DataObject\IdentityInterface
 {
     const CACHE_TAG = 'updated_entities_post';

@@ -16,7 +16,16 @@ interface UpdateHandlerInterface
      * Return the updated entities.
      *
      * @api
-     * @return string test string
+     * @return string json array of updated products ids and skus
      */
     public function get();
+
+    /**
+     * Return the updated entities.
+     *
+     * @api
+     * @param string[] array of ids
+     * @return string test string
+     */
+    public function updatestatus($product_ids);
 }
