@@ -41,6 +41,13 @@ class InstallSchema implements InstallSchemaInterface
                     'Entity'
                 )
                 ->addColumn(
+                    'action',
+                    Table::TYPE_TEXT,
+                    null,
+                    ['nullable' => false, 'default' => ''],
+                    'Action'
+                )
+                ->addColumn(
                     'sku',
                     Table::TYPE_TEXT,
                     null,

@@ -3,4 +3,7 @@
     <event name="catalog_product_save_before">
         <observer name="detectProductChanges" instance="B2bapp\UpdateHandler\Observer\ProductChangeObserver" />
     </event>
+    <event name="catalog_product_delete_after">
+        <observer name="detectProductDelete" instance="B2bapp\UpdateHandler\Observer\ProductChangeObserver" />
+    </event>
 </config>
