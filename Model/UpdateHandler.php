@@ -24,7 +24,7 @@ class UpdateHandler implements UpdateHandlerInterface
         $select = $connection->select()
             ->from(
                 ['o' => $model->getTableName('b2bapp_updated_entities')],
-                ['id','sku']
+                ['id','sku', 'action']
             )
             ->where('status=1');
 
