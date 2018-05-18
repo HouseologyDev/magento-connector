@@ -6,7 +6,7 @@ include(__DIR__.'/../../../magento/magento2-base/dev/tests/api-functional/framew
 
 class UpdateHandlerTest extends \Magento\TestFramework\TestCase\WebapiAbstract
 {
-    public function testBasicRoutingExplicitPath()
+    public function testUpdatedEntitiesApi()
     {
         $serviceInfo = [
             'rest' => [
@@ -14,7 +14,23 @@ class UpdateHandlerTest extends \Magento\TestFramework\TestCase\WebapiAbstract
                 'httpMethod' => \Magento\Framework\Webapi\Rest\Request::HTTP_METHOD_GET,
             ]
         ];
+
         $item = $this->_webApiCall($serviceInfo);
         $this->assertEquals('[]', $item, "Invalid response from updatedentities API");
+    }
+
+    public function testSetStatusApi()
+    {
+        $serviceInfo = [
+            'rest' => [
+                'resourcePath' => '/V1/b2bapp/setstatus',
+                'httpMethod' => \Magento\Framework\Webapi\Rest\Request::HTTP_METHOD_POST,
+                'contentType' => 'application/json'
+            ]
+        ];
+
+        $requestData = ['product_ids' => ["0" => 0]]; //Assuming that there will not be any entry with id '0'
+        $item = $this->_webApiCall($serviceInfo, $requestData);
+        $this->assertEquals(0, $item, "Invalid response from setstatus API");
     }
 }
