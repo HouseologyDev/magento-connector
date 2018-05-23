@@ -41,6 +41,13 @@ class InstallSchema implements InstallSchemaInterface
                     'Entity'
                 )
                 ->addColumn(
+                    'entity_id',
+                    Table::TYPE_INTEGER,
+                    null,
+                    ['nullable' => false, 'default' => '0', 'unsigned' => true],
+                    'Status'
+                )
+                ->addColumn(
                     'action',
                     Table::TYPE_TEXT,
                     null,

@@ -12,23 +12,31 @@ class UpdateHandler implements UpdateHandlerInterface
      * Return the updated entities.
      *
      * @api
+     * @param string entity type
      * @return string json array of updated products ids and skus
      */
-    public function get()
+    public function get($entity)
     {
+        $validEntities = ['product', 'category'];
+
+        if (!in_array($entity, $validEntities)) {
+            return '[]';
+        }
+
         $model = \Magento\Framework\App\ObjectManager::getInstance()
             ->get('\Magento\Framework\App\ResourceConnection');
 
         $connection = $model->getConnection();
 
+        $bind = array('entity' => $entity);
         $select = $connection->select()
             ->from(
                 ['o' => $model->getTableName('b2bapp_updated_entities')],
-                ['id','sku', 'action']
+                ['id','entity_id','sku', 'action']
             )
-            ->where('status=1');
+            ->where('entity = :entity AND status = 1');
 
-        $result = $connection->fetchAll($select);
+        $result = $connection->fetchAll($select, $bind);
         return json_encode($result);
     }
 
@@ -36,27 +44,35 @@ class UpdateHandler implements UpdateHandlerInterface
      * Return the updated entities.
      *
      * @api
-     * @param string[] array of ids
+     * @param string entity type
+     * @param string[] array of entity ids
      * @return string test string
      */
-    public function updatestatus($product_ids)
+    public function updatestatus($entity, $entity_ids)
     {
-        foreach($product_ids as $id) {
+        $validEntities = ['product', 'category'];
+
+        if (!in_array($entity, $validEntities)) {
+            return -1;
+        }
+
+        foreach($entity_ids as $entitytId) {
             try {
                 $model = \Magento\Framework\App\ObjectManager::getInstance()
                     ->get('\Magento\Framework\App\ResourceConnection');
 
                 $connection = $model->getConnection();
 
-                $bind = array('id' => $id);
+                $bind = array('entity' => $entity, 'entity_id' => $entitytId);
                 $select = $connection->select()
                     ->from(
                         ['o' => $model->getTableName('b2bapp_updated_entities')]
                     )
-                    ->where('id = :id');
-                $row = $connection->fetchOne($select, $bind);
+                    ->where('entity = :entity AND entity_id = :entity_id');
+
+                $id = $connection->fetchOne($select, $bind);
                 
-                if($row) {
+                if($id) {
                     $model = \Magento\Framework\App\ObjectManager::getInstance()
                     ->create('B2bapp\UpdateHandler\Model\UpdatedEntities');
 

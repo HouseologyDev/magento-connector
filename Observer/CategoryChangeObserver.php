@@ -2,58 +2,58 @@
 
 namespace B2bapp\UpdateHandler\Observer;
 
-class ProductChangeObserver implements \Magento\Framework\Event\ObserverInterface
+class CategoryChangeObserver implements \Magento\Framework\Event\ObserverInterface
 {
-    public function detectProductChanges(\Magento\Framework\Event\Observer $observer)
+    public function detectCategoryChanges(\Magento\Framework\Event\Observer $observer)
     {
         /**
-         * @var $product Mage_Catalog_Model_Product
+         * @var $category Mage_Catalog_Model_Category
          */
-        $product = $observer->getEvent()->getProduct();
+        $category = $observer->getEvent()->getCategory();
         try {
             $logger = \Magento\Framework\App\ObjectManager::getInstance()
                 ->create('\Psr\Log\LoggerInterface');
 
-            $productId = 0;
-            if (!$product->getId()) {
-                //New product
+            $categoryId = 0;
+            if (!$category->getId()) {
+                //New category
                 $collectionFactory = \Magento\Framework\App\ObjectManager::getInstance()
                     ->create('\Magento\Catalog\Model\ResourceModel\Category\CollectionFactory');
                 $collection = $collectionFactory
                     ->create()
-                    ->addAttributeToFilter('name',$product->getName())
+                    ->addAttributeToFilter('name',$category->getName())
                     ->setPageSize(1);
 
                 if ($collection->getSize()) {
-                    $productId = $collection->getFirstItem()->getId();
+                    $categoryId = $collection->getFirstItem()->getId();
                 } else {
-                    $logger->log(\Psr\Log\LogLevel::DEBUG, 'B2bapp_UpdateHandler - Detect Product changes: Could not get ID for '. $product->getName());
+                    $logger->log(\Psr\Log\LogLevel::DEBUG, 'B2bapp_UpdateHandler - Detect Category changes: Could not get ID for '. $category->getName());
                     return;
                 }
             } else {
-                $productId = $product->getId();
+                $categoryId = $category->getId();
             }
-            
             $model = \Magento\Framework\App\ObjectManager::getInstance()
                 ->create('B2bapp\UpdateHandler\Model\UpdatedEntities');
 
-            $model->load($product->getSku(), 'sku');
+            $model->load($category->getName(), 'sku');
 
             $action = '';
-            if($observer->getEvent()->getName() == 'catalog_product_save_after') {
+            if($observer->getEvent()->getName() == 'catalog_category_save_after') {
                 $action = 'change';
-            } else if($observer->getEvent()->getName() == 'catalog_product_delete_after') {
+            } else if($observer->getEvent()->getName() == 'catalog_category_delete_after') {
                 $action = 'delete';
             }
 
             $model->addData([
-                "entity" => 'product',
-                "entity_id" => $productId,
+                "entity" => 'category',
+                "entity_id" => $categoryId,
                 "action" => $action,
-                "sku" => $product->getSku(),
+                "sku" => $category->getName(),
                 "updated_at" => (new \DateTime())->format(\Magento\Framework\Stdlib\DateTime::DATETIME_PHP_FORMAT),
                 "status" => true
             ]);
+
             $model->save();
         } catch (Exception $e) {
             echo "error saving updated entities";
@@ -63,7 +63,7 @@ class ProductChangeObserver implements \Magento\Framework\Event\ObserverInterfac
 
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-        $this->detectProductChanges($observer);
+        $this->detectCategoryChanges($observer);
 
         return $this;
     }

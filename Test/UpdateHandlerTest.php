@@ -10,7 +10,7 @@ class UpdateHandlerTest extends \Magento\TestFramework\TestCase\WebapiAbstract
     {
         $serviceInfo = [
             'rest' => [
-                'resourcePath' => '/V1/b2bapp/updatedentities',
+                'resourcePath' => '/V1/b2bapp/updatedentities?entity=product',
                 'httpMethod' => \Magento\Framework\Webapi\Rest\Request::HTTP_METHOD_GET,
             ]
         ];
@@ -29,7 +29,7 @@ class UpdateHandlerTest extends \Magento\TestFramework\TestCase\WebapiAbstract
             ]
         ];
 
-        $requestData = ['product_ids' => ["0" => 0]]; //Assuming that there will not be any entry with id '0'
+        $requestData = ['entity' => 'product','entity_ids' => ["0" => 0]]; //Assuming that there will not be any entry with id '0'
         $item = $this->_webApiCall($serviceInfo, $requestData);
         $this->assertEquals(0, $item, "Invalid response from setstatus API");
     }
