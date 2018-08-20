@@ -27,6 +27,13 @@ interface UpdatedEntitiesInterface
     public function setEntity($entity);
 
     /**
+     * Limit
+     *
+     * @return int|null
+     */
+    public function getLimit();
+
+    /**
      * Updated at
      *
      * @return date|null
