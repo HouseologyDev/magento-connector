@@ -13,9 +13,10 @@ class UpdateHandler implements UpdateHandlerInterface
      *
      * @api
      * @param string entity type
+     * @param int limit
      * @return string json array of updated products ids and skus
      */
-    public function get($entity)
+    public function get($entity, $limit)
     {
         $validEntities = ['product', 'category'];
 
@@ -36,6 +37,9 @@ class UpdateHandler implements UpdateHandlerInterface
             )
             ->where('entity = :entity AND status = 1');
 
+        if ($limit) {
+            $select = $select->limit((int)$limit);
+        }
         $result = $connection->fetchAll($select, $bind);
         return json_encode($result);
     }
@@ -84,7 +88,7 @@ class UpdateHandler implements UpdateHandlerInterface
                     ]);
                     $model->save();
                 }
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 return -1;
             }
         }

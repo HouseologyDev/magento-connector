@@ -17,9 +17,10 @@ interface UpdateHandlerInterface
      *
      * @api
      * @param string entity type
+     * @param int limit
      * @return string json array of updated products ids and skus
      */
-    public function get($entity);
+    public function get($entity, $limit);
 
     /**
      * Return the updated entities.
