@@ -32,6 +32,7 @@ class ProductChangeObserver implements \Magento\Framework\Event\ObserverInterfac
             } else {
                 $productId = $product->getId();
             }
+
             $action = '';
             if($observer->getEvent()->getName() == 'catalog_product_save_after') {
                 $action = 'change';

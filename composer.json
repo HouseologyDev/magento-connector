@@ -1,5 +1,6 @@
 {
   "name": "b2bapp/update-handler",
+  "version": "1.0.0",
   "description": "Update Handler module for Magento 2",
   "type": "magento2-module",
   "license": [
@@ -20,6 +21,6 @@
       "B2bapp\\UpdateHandler\\Model\\ResourceModel\\UpdatedEntities": "Model/ResourceModel/UpdatedEntities.php"
     }
   },
-  "minimum-stability": "dev",
+  "minimum-stability": "stable",
   "prefer-stable": true
 }
